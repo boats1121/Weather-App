@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SkyTrack - Weather Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>SkyTrack Weather Dashboard</h1>
+      <form id="search-form">
+        <input type="text" id="city-input" placeholder="Enter city name" required />
+        <button type="submit">Search</button>
+      </form>
+    </header>
+
+    <main>
+      <section id="current-weather">
+        <h2>Current Weather</h2>
+        <div id="weather-details">
+          <!-- Weather info will appear here -->
+        </div>
+      </section>
+
+      <section id="forecast">
+        <h2>5-Day Forecast</h2>
+        <div id="forecast-cards">
+          <!-- Forecast cards will be populated here -->
+        </div>
+      </section>
+    </main>
+
+    <aside>
+      <h3>Recent Searches</h3>
+      <ul id="search-history"></ul>
+    </aside>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

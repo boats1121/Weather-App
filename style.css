@@ -1,0 +1,63 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f7fa;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+form {
+  margin-top: 10px;
+}
+
+input[type="text"] {
+  padding: 8px;
+  width: 60%;
+  max-width: 300px;
+}
+
+button {
+  padding: 8px 12px;
+}
+
+#current-weather, #forecast, aside {
+  margin-bottom: 30px;
+}
+
+#weather-details, #forecast-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.forecast-card {
+  background-color: white;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  width: 120px;
+  text-align: center;
+}
+
+aside ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+aside li {
+  cursor: pointer;
+  margin-bottom: 5px;
+  color: blue;
+  text-decoration: underline;
+}
