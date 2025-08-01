@@ -3,39 +3,68 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>SkyTrack - Weather Dashboard</title>
+  <title>SkyTrack – Weather Dashboard</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
+
+    <!-- Header section -->
     <header>
       <h1>SkyTrack Weather Dashboard</h1>
+
+      <!-- Search form -->
       <form id="search-form">
         <input type="text" id="city-input" placeholder="Enter city name" required />
         <button type="submit">Search</button>
       </form>
     </header>
 
+    <!-- Main content area -->
     <main>
+
+      <!-- Current weather section -->
       <section id="current-weather">
         <h2>Current Weather</h2>
+
+        <!-- Placeholder for current weather data -->
         <div id="weather-details">
-          <!-- Weather info will appear here -->
+          <!-- Example: 
+            - City name
+            - Temperature
+            - Weather condition
+            - Humidity
+            - Wind speed
+            - Weather icon
+          -->
         </div>
       </section>
 
+      <!-- Forecast section -->
       <section id="forecast">
         <h2>5-Day Forecast</h2>
+
+        <!-- Placeholder for forecast cards -->
         <div id="forecast-cards">
-          <!-- Forecast cards will be populated here -->
+          <!-- Each card will display:
+            - Date
+            - Weather icon
+            - Temperature
+            - Condition
+          -->
         </div>
       </section>
+
     </main>
 
+    <!-- Sidebar for recent search history -->
     <aside>
       <h3>Recent Searches</h3>
-      <ul id="search-history"></ul>
+      <ul id="search-history">
+        <!-- List of last 5 searched cities will be inserted here -->
+      </ul>
     </aside>
+
   </div>
 
   <script src="app.js"></script>
