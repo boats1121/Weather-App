@@ -1,7 +1,9 @@
 const apiKey = "API_KEY_HERE";
 const weatherDetails = document.getElementById("weather-details");
+const searchForm = document.getElementById("search-form");
+const cityInput = document.getElementById("city-input");
 
-// Basic fetchWeather function to get data and render to UI
+// Fetch and display weather data for a given city
 function fetchWeather(city) {
   const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
 
@@ -17,19 +19,37 @@ function fetchWeather(city) {
     })
     .catch(error => {
       console.error("Error:", error);
-      weatherDetails.innerHTML = "<p>Failed to load weather data.</p>";
+      weatherDetails.innerHTML = `<p>Could not retrieve weather for "${city}".</p>`;
     });
 }
 
-// Render basic weather info to #weather-details
+// Display weather data in the UI
 function displayWeather(data) {
+  const iconCode = data.weather[0].icon;
+  const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
+
   const html = `
-    <p><strong>${data.name}</strong></p>
+    <h3>${data.name}</h3>
+    <img src="${iconUrl}" alt="${data.weather[0].description}" />
     <p>Temperature: ${data.main.temp}°F</p>
-    <p>Condition: ${data.weather[0].main}</p>
+    <p>Feels Like: ${data.main.feels_like}°F</p>
+    <p>Condition: ${data.weather[0].description}</p>
+    <p>Humidity: ${data.main.humidity}%</p>
+    <p>Wind Speed: ${data.wind.speed} mph</p>
   `;
+
   weatherDetails.innerHTML = html;
 }
 
-// Fetch weather for default city on page load
+// Handle search form submission
+searchForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+  const city = cityInput.value.trim();
+  if (city) {
+    fetchWeather(city);
+    cityInput.value = "";
+  }
+});
+
+// Load default city on page load
 fetchWeather("New York");
