@@ -1,11 +1,19 @@
 const apiKey = "API_KEY_HERE";
+const defaultCity = "New York";
+
+// DOM elements
 const weatherDetails = document.getElementById("weather-details");
 const searchForm = document.getElementById("search-form");
 const cityInput = document.getElementById("city-input");
 
-// Fetch and display weather data for a given city
+// Build the OpenWeather API URL for a city
+function buildApiUrl(city) {
+  return `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&appid=${apiKey}&units=imperial`;
+}
+
+// Fetch and display weather data
 function fetchWeather(city) {
-  const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
+  const apiUrl = buildApiUrl(city);
 
   fetch(apiUrl)
     .then(response => {
@@ -23,7 +31,7 @@ function fetchWeather(city) {
     });
 }
 
-// Display weather data in the UI
+// Display basic weather information in the UI
 function displayWeather(data) {
   const iconCode = data.weather[0].icon;
   const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
@@ -51,5 +59,5 @@ searchForm.addEventListener("submit", function (e) {
   }
 });
 
-// Load default city on page load
-fetchWeather("New York");
+// Load default city's weather on page load
+fetchWeather(defaultCity);
