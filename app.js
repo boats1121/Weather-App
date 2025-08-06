@@ -104,6 +104,8 @@ function displayWeather(data) {
   `;
 
   weatherDetails.innerHTML = html;
+  updateBackground(data.weather[0].main);
+
 }
 
 // Handle search form submission
@@ -118,3 +120,24 @@ searchForm.addEventListener("submit", function (e) {
 
 // Load default city's weather on page load
 fetchWeather(defaultCity);
+
+function updateBackground(condition) {
+  const body = document.body;
+
+  // Reset all classes
+  body.className = "";
+
+  const conditionLower = condition.toLowerCase();
+
+  if (conditionLower.includes("cloud")) {
+    body.classList.add("cloudy");
+  } else if (conditionLower.includes("rain") || conditionLower.includes("drizzle")) {
+    body.classList.add("rainy");
+  } else if (conditionLower.includes("clear")) {
+    body.classList.add("sunny");
+  } else if (conditionLower.includes("snow")) {
+    body.classList.add("snowy");
+  } else {
+    body.classList.add("default-weather");
+  }
+}

@@ -104,3 +104,68 @@ aside h3 {
   cursor: pointer;
   text-decoration: underline;
 }
+
+/* Responsive design */
+@media (max-width: 768px) {
+  #forecast-cards {
+    justify-content: center;
+  }
+
+  .forecast-card {
+    width: 45%;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  #city-input {
+    width: 80%;
+  }
+
+  button {
+    width: 50%;
+  }
+}
+
+@media (max-width: 480px) {
+  .forecast-card {
+    width: 100%;
+  }
+
+  header h1 {
+    font-size: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
+}
+
+/* Weather-based backgrounds */
+body.sunny {
+  background: linear-gradient(to top, #fceabb, #f8b500);
+  color: #222;
+}
+
+body.cloudy {
+  background: linear-gradient(to top, #d7d2cc, #304352);
+  color: #fff;
+}
+
+body.rainy {
+  background: linear-gradient(to top, #4b79a1, #283e51);
+  color: #fff;
+}
+
+body.snowy {
+  background: linear-gradient(to top, #e6dada, #274046);
+  color: #222;
+}
+
+body.default-weather {
+  background: linear-gradient(to top, #ece9e6, #ffffff);
+}
