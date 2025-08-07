@@ -38,6 +38,7 @@ function fetchWeather(city) {
 function fetchForecast(city) {
   const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${encodeURIComponent(city)}&appid=${apiKey}&units=imperial`;
 
+  // Already set loading in fetchWeather, so we skip here
   fetch(forecastUrl)
     .then(response => {
       if (!response.ok) {
@@ -120,6 +121,29 @@ searchForm.addEventListener("submit", function (e) {
 
 // Load default city's weather on page load
 fetchWeather(defaultCity);
+
+  const apiUrl = buildApiUrl(city);
+
+  // Show loading message
+  weatherDetails.innerHTML = `<p>Loading weather data...</p>`;
+  forecastCards.innerHTML = `<p>Loading forecast...</p>`;
+
+  fetch(apiUrl)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Failed to fetch weather data");
+      }
+      return response.json();
+    })
+    .then(data => {
+      displayWeather(data);
+      fetchForecast(city); // keep fetching forecast
+    })
+    .catch(error => {
+      console.error("Error:", error);
+      weatherDetails.innerHTML = `<p>Could not retrieve weather for "${city}".</p>`;
+      forecastCards.innerHTML = "";
+    });
 
 function updateBackground(condition) {
   const body = document.body;
