@@ -125,8 +125,8 @@ fetchWeather(defaultCity);
   const apiUrl = buildApiUrl(city);
 
   // Show loading message
-  weatherDetails.innerHTML = `<p>Loading weather data...</p>`;
-  forecastCards.innerHTML = `<p>Loading forecast...</p>`;
+  weatherDetails.innerHTML = `<div class="spinner"></div>`;
+  forecastCards.innerHTML = `<div class="spinner"></div>`;
 
   fetch(apiUrl)
     .then(response => {
