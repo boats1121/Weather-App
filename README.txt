@@ -1,31 +1,24 @@
-# SkyTrack – Weather Dashboard App
+# SkyTrack – Weather Dashboard
 
-SkyTrack is a lightweight, responsive weather dashboard built with HTML, CSS, and JavaScript. It allows users to search for any city and view the current weather and 5-day forecast using the OpenWeather API.
+SkyTrack is a lightweight, responsive weather dashboard built with HTML, CSS, and JavaScript. It lets you search any city, shows current conditions, and displays a 5-day forecast. It uses the OpenWeather API and adapts the page background to match the weather.
 
----
+## Features (current state)
+- Search by city (with error handling)
+- Current weather (temp, feels like, condition, humidity, wind, icon)
+- 5-day forecast (midday snapshot per day)
+- Recent search history (localStorage, clickable)
+- Loading indicators for fetches
+- Responsive layout for mobile/tablet/desktop
+- Dynamic background based on weather condition
 
-## Features
-
-- Search weather by city name
-- View current temperature, condition, and weather icon
-- See a 5-day forecast with daily temperature and weather
-- Displays wind speed, humidity, and "feels like" temperature
-- Saves recent searches to localStorage
-- Dynamic icons and background based on weather condition
-- Fully responsive design for mobile and tablet
-
----
-
-## Technologies Used
-
-- HTML5
-- CSS3
-- JavaScript (Vanilla)
+## Tech Stack
+- HTML5, CSS3, JavaScript (vanilla)
 - OpenWeather API
-- GitHub Pages (for deployment)
+- (Optional) GitHub Pages for deployment
 
----
+## Getting Started
 
-## Demo
-
-Live demo coming soon. A link will be added after deployment.
+### 1) Clone
+```bash
+git clone https://github.com/your-username/skytrack-weather-dashboard.git
+cd skytrack-weather-dashboard
