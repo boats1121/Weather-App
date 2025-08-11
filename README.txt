@@ -14,11 +14,3 @@ SkyTrack is a lightweight, responsive weather dashboard built with HTML, CSS, an
 ## Tech Stack
 - HTML5, CSS3, JavaScript (vanilla)
 - OpenWeather API
-- (Optional) GitHub Pages for deployment
-
-## Getting Started
-
-### 1) Clone
-```bash
-git clone https://github.com/your-username/skytrack-weather-dashboard.git
-cd skytrack-weather-dashboard
