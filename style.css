@@ -33,9 +33,9 @@ body {
 }
 
 /* Weather-based backgrounds (still supported) */
+/* Weather-based backgrounds — background only, no text color */
 body.sunny {
   background: linear-gradient(160deg, #f8e8a1 0%, #f3b664 45%, #f09c39 100%);
-  color: #1f2937;
 }
 body.cloudy {
   background: linear-gradient(160deg, #64748b 0%, #475569 60%, #334155 100%);
@@ -45,11 +45,11 @@ body.rainy {
 }
 body.snowy {
   background: linear-gradient(160deg, #dbeafe 0%, #c7d2fe 60%, #a5b4fc 100%);
-  color: #111827;
 }
 body.default-weather {
   background: linear-gradient(180deg, var(--bg-1), var(--bg-2));
 }
+
 
 /* Page shell */
 .page {
@@ -137,9 +137,10 @@ body.default-weather {
   border: 1px solid var(--card-border);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  overflow: hidden;
   backdrop-filter: blur(6px);
+  color: var(--text);   /* <-- forces consistent text color */
 }
+
 
 .card--main {
   grid-column: 1 / 2;
@@ -162,6 +163,13 @@ body.default-weather {
 .card-body {
   padding: 16px;
 }
+
+.forecast-card p,
+#weather-details p,
+.history-list li {
+  color: #e2e8f0;  /* fixed light gray text */
+}
+
 
 /* -----------------------
    Current Weather
@@ -319,3 +327,77 @@ body.default-weather {
     margin: 0 auto;
   }
 }
+
+/* -----------------------
+   Readability hardening
+   (guarantees contrast on bright backgrounds)
+------------------------ */
+
+/* 1) Put all content above a global scrim */
+.page {
+  position: relative;
+  z-index: 1;
+}
+
+/* 2) Global scrim overlay on the body (darkens bright backgrounds) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0; /* below .page */
+  background: rgba(0, 0, 0, 0.30); /* default dim */
+  transition: background 0.25s ease;
+}
+
+/* Extra dimming for very bright themes */
+body.sunny::before,
+body.snowy::before {
+  background: rgba(0, 0, 0, 0.42); /* stronger scrim for orange/very light */
+}
+
+/* 3) Lock UI surfaces to opaque, neutral colors (no bleed-through) */
+:root {
+  --surface: #0f172a;        /* deep slate */
+  --surface-hover: #111f33;  /* slight hover lift */
+}
+
+.card,
+.forecast-card,
+.history-list li {
+  background-color: var(--surface) !important;
+  border-color: rgba(255,255,255,0.12) !important;
+  backdrop-filter: none !important; /* prevent background bleed */
+}
+
+/* Hover stays readable */
+.forecast-card:hover,
+.history-list li:hover {
+  background-color: var(--surface-hover) !important;
+}
+
+/* 4) Pin text color inside all cards and header/footer areas */
+.card, .card * {
+  color: var(--text) !important;
+}
+
+/* Header & footer also sit on top of the scrim; keep them readable */
+.site-header, .site-footer {
+  position: relative;
+  z-index: 1;
+  color: var(--text);
+}
+
+/* Inputs/buttons: ensure strong contrast against bright bg */
+#city-input {
+  background: rgba(17, 24, 39, 0.85); /* darker input surface */
+  border-color: rgba(255,255,255,0.18);
+  color: var(--text);
+}
+#city-input::placeholder { color: #cbd5e1; }
+
+.btn {
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+}
+
